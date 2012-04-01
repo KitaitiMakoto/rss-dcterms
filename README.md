@@ -1,6 +1,6 @@
 # RSS::DCTERMS
 
-TODO: Write a gem description
+Enables standard bundled RSS library parse and make feeds including DCMI Metadata Terms.
 
 ## Installation
 
