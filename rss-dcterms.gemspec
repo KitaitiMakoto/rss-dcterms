@@ -2,7 +2,7 @@
 Gem::Specification.new do |gem|
   gem.authors       = ["KITAITI Makoto"]
   gem.email         = ["KitaitiMakoto@gmail.com"]
-  gem.description   = %q{Enable standard bundled RSS library parse and make using DCMI Metadata Terms}
+  gem.description   = %q{Enable standard bundled RSS library parse and make feeds using DCMI Metadata Terms}
   gem.summary       = %q{DCTERMS support for standard bundled RSS library}
   gem.homepage      = "https://gitorious.org/rss/dcterms"
 
