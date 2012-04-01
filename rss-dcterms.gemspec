@@ -13,6 +13,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = '0.0.1'
 
+  gem.add_development_dependency 'test-unit'
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'pry-doc'
+  gem.add_development_dependency 'yard'
 end
