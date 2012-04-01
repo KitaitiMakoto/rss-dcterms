@@ -205,25 +205,6 @@ module RSS
   end
 end
 
-module RSS
-  module Utils
-    module_function
-
-    def to_attr_name(name)
-      name.gsub(/([A-Z])/) {'_' + $1.downcase}
-    end
-  end
-
-  module Atom
-    Feed.install_ns(DCTERMS::PREFIX, DCTERMS::URI)
-
-    class Feed
-      include DCTERMS::PropertyModel
-      class Entry; include DCTERMS::PropertyModel; end
-    end
-
-    class Entry
-      include DCTERMS::PropertyModel
-    end
-  end
-end
+require 'rss/dcterms/property/1.0'
+require 'rss/dcterms/property/2.0'
+require 'rss/dcterms/property/atom'
