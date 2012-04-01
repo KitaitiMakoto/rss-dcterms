@@ -16,9 +16,16 @@ Or install it yourself as:
 
     $ gem install rss-dcterms
 
+Or
+
+    $ ruby setup.rb
+
 ## Usage
 
-TODO: Write usage instructions here
+    require 'rss/dcterms'
+
+    feed = RSS::Parser.parse(feed_uri)
+    publisher = feed.dcterms_publisher
 
 ## Contributing
 
