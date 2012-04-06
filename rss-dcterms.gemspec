@@ -4,7 +4,7 @@ require File.expand_path('../lib/rss/dcterms/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["KITAITI Makoto"]
   gem.email         = ["KitaitiMakoto@gmail.com"]
-  gem.description   = %q{Enable standard bundled RSS library parse and make feeds including DCMI Metadata Terms}
+  gem.description   = %q{Enable standard bundled RSS library parse and make feeds including DCMI(Dublin Core Metadata Initiative) Metadata Terms}
   gem.summary       = %q{DCTERMS support for standard bundled RSS library}
   gem.homepage      = "https://gitorious.org/rss/dcterms"
 
