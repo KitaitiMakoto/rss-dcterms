@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "rss-dcterms"
   gem.require_paths = ["lib"]
-  gem.version       = '0.0.2'
+  gem.version       = RSS::DCTERMS::VERSION
 
   gem.add_development_dependency 'test-unit'
   gem.add_development_dependency 'pry'
