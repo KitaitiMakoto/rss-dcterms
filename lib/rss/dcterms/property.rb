@@ -56,64 +56,64 @@ module RSS
 
       TEXT_ELEMENTS = {
         "contributor" => nil,
-        "creator" => nil,
+        "creator"     => nil,
 
         "coverage" => nil,
-        "spatial" => nil,
+        "spatial"  => nil,
         "temporal" => nil,
 
-        "description" => nil,
-        "abstract" => nil,
+        "description"     => nil,
+        "abstract"        => nil,
         "tableOfContents" => "tableOfContents_list",
 
         "format" => nil,
         "extent" => nil,
         "medium" => nil,
 
-        "identifier" => nil,
+        "identifier"            => nil,
         "bibliographicCitation" => nil,
 
         "language" => nil,
 
         "publisher" => nil,
 
-        "relation" => nil,
-        "source" => nil,
-        "conformsTo" => nil,
-        "hasFormat" => nil,
-        "hasPart" => nil,
-        "hasVersion" => nil,
-        "isFormatOf" => nil,
-        "isPartOf" => nil,
+        "relation"       => nil,
+        "source"         => nil,
+        "conformsTo"     => nil,
+        "hasFormat"      => nil,
+        "hasPart"        => nil,
+        "hasVersion"     => nil,
+        "isFormatOf"     => nil,
+        "isPartOf"       => nil,
         "isReferencedBy" => nil,
-        "isReplacedBy" => nil,
-        "isRequiredBy" => nil,
-        "isVersionOf" => nil,
-        "references" => "references_list",
-        "replaces" => "replaces_list",
-        "requires" => "requires_list",
+        "isReplacedBy"   => nil,
+        "isRequiredBy"   => nil,
+        "isVersionOf"    => nil,
+        "references"     => "references_list",
+        "replaces"       => "replaces_list",
+        "requires"       => "requires_list",
 
-        "rights" => "rights_list",
+        "rights"       => "rights_list",
         "accessRights" => "accessRights_list",
-        "license" => nil,
+        "license"      => nil,
 
         "subject" => nil,
 
-        "title" => nil,
+        "title"       => nil,
         "alternative" => nil,
 
         "type" => nil,
 
-        "audience" => nil,
+        "audience"       => nil,
         "educationLevel" => nil,
-        "mediator" => nil,
+        "mediator"       => nil,
 
-        "accrualMethod" => nil,
-        "accrualPeriodicity" => nil,
-        "accrualPolicy" => nil,
+        "accrualMethod"       => nil,
+        "accrualPeriodicity"  => nil,
+        "accrualPolicy"       => nil,
         "instructionalMethod" => nil,
-        "provenance" => nil,
-        "rightsHolder" => nil
+        "provenance"          => nil,
+        "rightsHolder"        => nil
       }
 
       DATE_ELEMENTS = {
