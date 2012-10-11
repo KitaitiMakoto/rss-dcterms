@@ -3,17 +3,17 @@ require 'rss/maker'
 
 module RSS
   module Maker
-    module DCTERMS
+    module DCTerms
       module PropertyModel
         class << self
           def append_features(klass)
             super
 
-            ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
+            ::RSS::DCTerms::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
               plural_name ||= "#{name}s"
-              full_name = "#{RSS::DCTERMS::PREFIX}_#{name}"
-              full_plural_name = "#{RSS::DCTERMS::PREFIX}_#{plural_name}"
-              plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
+              full_name = "#{RSS::DCTerms::PREFIX}_#{name}"
+              full_plural_name = "#{RSS::DCTerms::PREFIX}_#{plural_name}"
+              plural_klass_name = "DCTerms#{Utils.to_class_name(plural_name)}"
               klass.def_classed_elements full_name, 'value', plural_klass_name,
                                          full_plural_name, name
               klass.module_eval(<<-EOC)
@@ -31,11 +31,11 @@ module RSS
           end
 
           def install_dcterms_core(klass)
-            ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
+            ::RSS::DCTerms::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
               plural_name ||= "#{name}s"
               klass_name = Utils.to_class_name(name)
-              full_klass_name = "DCTERMS#{klass_name}"
-              plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
+              full_klass_name = "DCTerms#{klass_name}"
+              plural_klass_name = "DCTerms#{Utils.to_class_name(plural_name)}"
               klass.module_eval(<<-EOC, __FILE__, __LINE__ + 1)
               class #{plural_klass_name} < #{plural_klass_name}Base
                 class #{full_klass_name} < #{full_klass_name}Base
@@ -47,13 +47,13 @@ EOC
           end
         end
 
-        ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
+        ::RSS::DCTerms::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
           plural_name ||= "#{name}s"
-          full_name = "#{RSS::DCTERMS::PREFIX}_#{name}"
-          full_plural_name = "#{RSS::DCTERMS::PREFIX}_#{plural_name}"
+          full_name = "#{RSS::DCTerms::PREFIX}_#{name}"
+          full_plural_name = "#{RSS::DCTerms::PREFIX}_#{plural_name}"
           klass_name = Utils.to_class_name(name)
-          full_klass_name = "DCTERMS#{klass_name}"
-          plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
+          full_klass_name = "DCTerms#{klass_name}"
+          plural_klass_name = "DCTerms#{Utils.to_class_name(plural_name)}"
           module_eval(<<-EOC, __FILE__, __LINE__ + 1)
           class #{plural_klass_name}Base < Base
             def_array_element #{name.dump}, #{full_plural_name.dump},
@@ -84,35 +84,35 @@ EOC
     end
 
     class ChannelBase
-      include DCTERMS::PropertyModel
+      include DCTerms::PropertyModel
     end
 
-    class ImageBase; include DCTERMS::PropertyModel; end
+    class ImageBase; include DCTerms::PropertyModel; end
     class ItemsBase
       class ItemBase
-        include DCTERMS::PropertyModel
+        include DCTerms::PropertyModel
       end
     end
-    class TextinputBase; include DCTERMS::PropertyModel; end
+    class TextinputBase; include DCTerms::PropertyModel; end
 
     makers.each do |maker|
       maker.module_eval(<<-EOC, __FILE__, __LINE__ + 1)
         class Channel
-          DCTERMS::PropertyModel.install_dcterms_core self
+          DCTerms::PropertyModel.install_dcterms_core self
         end
 
         class Image
-          DCTERMS::PropertyModel.install_dcterms_core self
+          DCTerms::PropertyModel.install_dcterms_core self
         end
 
         class Items
           class Item
-            DCTERMS::PropertyModel.install_dcterms_core self
+            DCTerms::PropertyModel.install_dcterms_core self
           end
         end
 
         class Textinput
-          DCTERMS::PropertyModel.install_dcterms_core self
+          DCTerms::PropertyModel.install_dcterms_core self
         end
       EOC
     end

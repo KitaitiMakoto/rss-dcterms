@@ -1,7 +1,7 @@
 require 'rss'
 
 module RSS
-  module DCTERMS
+  module DCTerms
     PREFIX = 'dcterms'
     URI = "http://purl.org/dc/terms/"
   end

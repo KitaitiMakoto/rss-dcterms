@@ -1,5 +1,5 @@
 module RSS
-  module DCTERMS
+  module DCTerms
     module BasePropertyModel
       def append_features(klass)
         super
@@ -9,7 +9,7 @@ module RSS
           plural = plural_name || "#{name}s"
           full_name = "#{PREFIX}_#{name}"
           full_plural_name = "#{PREFIX}_#{plural}"
-          klass_name = "DCTERMS#{Utils.to_class_name(name)}"
+          klass_name = "DCTerms#{Utils.to_class_name(name)}"
           klass.install_must_call_validator(PREFIX, URI)
           klass.install_have_children_element(name, URI, "*",
                                               full_name, full_plural_name)
@@ -137,7 +137,7 @@ module RSS
 
       ELEMENTS.each do |name, plural_name|
         module_eval(<<-EOC, *get_file_and_line_from_caller(0))
-          class DCTERMS#{Utils.to_class_name(name)} < Element
+          class DCTerms#{Utils.to_class_name(name)} < Element
             include RSS10
 
             content_setup
@@ -184,7 +184,7 @@ module RSS
       DATE_ELEMENTS.each do |name, type|
         tag_name = "#{PREFIX}:#{name}"
         module_eval(<<-EOC, *get_file_and_line_from_caller(0))
-          class DCTERMS#{Utils.to_class_name(name)} < Element
+          class DCTerms#{Utils.to_class_name(name)} < Element
             remove_method(:content=)
             remove_method(:value=)
 
@@ -196,11 +196,11 @@ module RSS
       end
     end
 
-    DCTERMS::PropertyModel::ELEMENTS.each do |name|
+    DCTerms::PropertyModel::ELEMENTS.each do |name|
       class_name = Utils.to_class_name(name)
       BaseListener.install_class_name(URI, name, class_name)
     end
 
-    DCTERMS::PropertyModel::ELEMENTS.collect! {|name| "#{PREFIX}_#{name}"}
+    DCTerms::PropertyModel::ELEMENTS.collect! {|name| "#{PREFIX}_#{name}"}
   end
 end

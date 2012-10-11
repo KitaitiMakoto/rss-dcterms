@@ -1,5 +1,5 @@
 module RSS
-  module DCTERMS
+  module DCTerms
     VERSION = "0.0.4"
   end
 end
