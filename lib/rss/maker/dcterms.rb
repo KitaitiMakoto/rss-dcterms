@@ -5,27 +5,29 @@ module RSS
   module Maker
     module DCTERMS
       module PropertyModel
-        def self.append_features(klass)
-          super
+        class << self
+          def append_features(klass)
+            super
 
-          ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
-            plural_name ||= "#{name}s"
-            full_name = "#{RSS::DCTERMS::PREFIX}_#{name}"
-            full_plural_name = "#{RSS::DCTERMS::PREFIX}_#{plural_name}"
-            plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
-            klass.def_classed_elements full_name, 'value', plural_klass_name,
-                                       full_plural_name, name
-            klass.module_eval(<<-EOC)
-              def new_#{full_name}(value=nil)
-                _#{full_name} = #{full_plural_name}.new_#{name}
-                _#{full_name}.value = value
-                if block_given?
-                  yield _#{full_name}
-                else
-                  _#{full_name}
+            ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
+              plural_name ||= "#{name}s"
+              full_name = "#{RSS::DCTERMS::PREFIX}_#{name}"
+              full_plural_name = "#{RSS::DCTERMS::PREFIX}_#{plural_name}"
+              plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
+              klass.def_classed_elements full_name, 'value', plural_klass_name,
+                                         full_plural_name, name
+              klass.module_eval(<<-EOC)
+                def new_#{full_name}(value=nil)
+                  _#{full_name} = #{full_plural_name}.new_#{name}
+                  _#{full_name}.value = value
+                  if block_given?
+                    yield _#{full_name}
+                  else
+                    _#{full_name}
+                  end
                 end
-              end
-            EOC
+              EOC
+            end
           end
         end
 
@@ -63,19 +65,21 @@ module RSS
           EOC
         end
 
-        def self.install_dcterms_core(klass)
-          ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
-            plural_name ||= "#{name}s"
-            klass_name = Utils.to_class_name(name)
-            full_klass_name = "DCTERMS#{klass_name}"
-            plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
-            klass.module_eval(<<-EOC, __FILE__, __LINE__ + 1)
-            class #{plural_klass_name} < #{plural_klass_name}Base
-              class #{full_klass_name} < #{full_klass_name}Base
+        class << self
+          def install_dcterms_core(klass)
+            ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
+              plural_name ||= "#{name}s"
+              klass_name = Utils.to_class_name(name)
+              full_klass_name = "DCTERMS#{klass_name}"
+              plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
+              klass.module_eval(<<-EOC, __FILE__, __LINE__ + 1)
+              class #{plural_klass_name} < #{plural_klass_name}Base
+                class #{full_klass_name} < #{full_klass_name}Base
+                end
+                #{klass_name} = #{full_klass_name}
               end
-              #{klass_name} = #{full_klass_name}
-            end
 EOC
+            end
           end
         end
       end
