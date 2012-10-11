@@ -25,10 +25,21 @@ Or
 Usage
 -----
 
+### Parsing Feeds
+
     require 'rss/dcterms'
 
     feed = RSS::Parser.parse(feed_uri)
     publisher = feed.dcterms_publisher
+
+### Making Feeds
+
+    require 'rss/maker/dcterms'
+
+    feed = RSS::Maker.make('atom') {|maker|
+        maker.channel.dcterms_issued = Time.now
+        # ...
+    }
 
 Todo
 ----
