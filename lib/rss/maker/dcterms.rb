@@ -29,6 +29,22 @@ module RSS
               EOC
             end
           end
+
+          def install_dcterms_core(klass)
+            ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
+              plural_name ||= "#{name}s"
+              klass_name = Utils.to_class_name(name)
+              full_klass_name = "DCTERMS#{klass_name}"
+              plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
+              klass.module_eval(<<-EOC, __FILE__, __LINE__ + 1)
+              class #{plural_klass_name} < #{plural_klass_name}Base
+                class #{full_klass_name} < #{full_klass_name}Base
+                end
+                #{klass_name} = #{full_klass_name}
+              end
+EOC
+            end
+          end
         end
 
         ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
@@ -63,24 +79,6 @@ module RSS
             #{klass_name}Base = #{full_klass_name}Base
           end
           EOC
-        end
-
-        class << self
-          def install_dcterms_core(klass)
-            ::RSS::DCTERMS::PropertyModel::ELEMENT_NAME_INFOS.each do |name, plural_name|
-              plural_name ||= "#{name}s"
-              klass_name = Utils.to_class_name(name)
-              full_klass_name = "DCTERMS#{klass_name}"
-              plural_klass_name = "DCTERMS#{Utils.to_class_name(plural_name)}"
-              klass.module_eval(<<-EOC, __FILE__, __LINE__ + 1)
-              class #{plural_klass_name} < #{plural_klass_name}Base
-                class #{full_klass_name} < #{full_klass_name}Base
-                end
-                #{klass_name} = #{full_klass_name}
-              end
-EOC
-            end
-          end
         end
       end
     end
