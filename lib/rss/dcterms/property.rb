@@ -204,7 +204,3 @@ module RSS
     DCTERMS::PropertyModel::ELEMENTS.collect! {|name| "#{PREFIX}_#{name}"}
   end
 end
-
-require 'rss/dcterms/property/1.0'
-require 'rss/dcterms/property/2.0'
-require 'rss/dcterms/property/atom'

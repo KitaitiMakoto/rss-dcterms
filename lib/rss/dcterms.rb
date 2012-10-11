@@ -16,3 +16,6 @@ module RSS
 end
 
 require 'rss/dcterms/property'
+require 'rss/dcterms/1.0'
+require 'rss/dcterms/2.0'
+require 'rss/dcterms/atom'
