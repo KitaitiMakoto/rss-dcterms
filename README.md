@@ -1,8 +1,10 @@
-# RSS::DCTERMS
+RSS::DCTERMS
+============
 
 Enables standard bundled RSS library parse and make feeds including DCMI Metadata Terms.
 
-## Installation
+Installation
+------------
 
 Add this line to your application's Gemfile:
 
@@ -20,14 +22,21 @@ Or
 
     $ ruby setup.rb
 
-## Usage
+Usage
+-----
 
     require 'rss/dcterms'
 
     feed = RSS::Parser.parse(feed_uri)
     publisher = feed.dcterms_publisher
 
-## Contributing
+Todo
+----
+
+* Turn off DC(http://purl.org/dc/elements/1.1/) elements when making feeds
+
+Contributing
+------------
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
