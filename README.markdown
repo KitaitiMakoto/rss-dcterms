@@ -1,4 +1,4 @@
-RSS::DCTERMS
+RSS::DCTerms
 ============
 
 Enables standard bundled RSS library parse and make feeds including DCMI Metadata Terms.
