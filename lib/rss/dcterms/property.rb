@@ -117,15 +117,15 @@ module RSS
       }
 
       DATE_ELEMENTS = {
-        "date" => "w3cdtf",
-        "available" => "w3cdtf",
-        "created" => "w3cdtf",
-        "dateAccepted" => "w3cdtf",
+        "date"            => "w3cdtf",
+        "available"       => "w3cdtf",
+        "created"         => "w3cdtf",
+        "dateAccepted"    => "w3cdtf",
         "dateCopyrighted" => "w3cdtf",
-        "dateSubmitted" => "w3cdtf",
-        "issued" => "w3cdtf",
-        "modified" => "w3cdtf",
-        "valid" => "w3cdtf"
+        "dateSubmitted"   => "w3cdtf",
+        "issued"          => "w3cdtf",
+        "modified"        => "w3cdtf",
+        "valid"           => "w3cdtf"
       }
 
       ELEMENT_NAME_INFOS = PropertyModel::TEXT_ELEMENTS.to_a
