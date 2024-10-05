@@ -15,6 +15,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = RSS::DCTerms::VERSION
 
+  gem.add_runtime_dependency 'rss'
+
+  gem.add_development_dependency 'rake'
   gem.add_development_dependency 'test-unit'
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'pry-doc'
